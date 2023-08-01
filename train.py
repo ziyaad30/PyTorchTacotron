@@ -45,9 +45,14 @@ fs = hparams.sample_rate
 
 global_step = 0
 global_epoch = 0
+
 use_cuda = torch.cuda.is_available()
+
 if use_cuda:
     cudnn.benchmark = False
+    device = 'cuda'
+else:
+    device = 'cpu'
 
 
 def load_model(checkpoint_path):
@@ -302,6 +307,7 @@ if __name__ == "__main__":
         print("Load checkpoint from: {}".format(checkpoint_path))
         checkpoint = torch.load(os.path.join(hparams.checkpoint_dir, checkpoint_path))
         model.load_state_dict(checkpoint["state_dict"])
+        model = model.to(device)
         optimizer.load_state_dict(checkpoint["optimizer"])
         try:
             global_step = checkpoint["global_step"] + 1
