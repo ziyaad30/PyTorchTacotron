@@ -24,13 +24,9 @@ def phoneme_text(text):
     text = backend.phonemize([text], strip=True)[0]
     return text.strip()
 
-def phoneme_to_sequence(text, cleaner_names):
+def phoneme_to_sequence(text):
     sequence = []
     
-    # First clean text
-    text = _clean_text(text, cleaner_names)
-    
-    # Check for curly braces and treat their contents as ARPAbet:
     sequence += _symbols_to_sequence(text)
     
     # Append EOS token
