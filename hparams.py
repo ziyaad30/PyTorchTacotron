@@ -26,11 +26,11 @@ class hparams:
     use_memory_mask = False
 
     # Data loader
-    pin_memory = False
-    num_workers = 0
+    pin_memory = True
+    num_workers = 2
 
     # Training:
-    batch_size = 4
+    batch_size = 32
     adam_beta1 = 0.9
     adam_beta2 = 0.999
     initial_learning_rate = 0.002
