@@ -2,7 +2,7 @@ import argparse
 import os
 from multiprocessing import cpu_count
 from tqdm import tqdm
-from datasets import ljspeech
+from tools import ljspeech
 from hparams import hparams
 
 
