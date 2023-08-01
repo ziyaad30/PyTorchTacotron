@@ -1,6 +1,10 @@
 # Default hyperparameters:
 class hparams:
     # Comma-separated list of cleaners to run on text prior to training and eval. For non-English
+    
+    #Dataset Root Directory
+    dataset_root = 'Speech'
+    
     # text, you may want to use "basic_cleaners" or "transliteration_cleaners" See TRAINING_DATA.md.
     cleaners='phoneme_cleaners'
     use_cmudict=False  # Use CMUDict during training to learn pronunciation of ARPAbet phonemes
@@ -52,4 +56,3 @@ class hparams:
     
     # Sample infer text
     sample_text = 'This is a cloned voice for TTS, made with Tacotron 2.'
-
