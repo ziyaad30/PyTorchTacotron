@@ -3,7 +3,9 @@ import librosa.filters
 import math
 import numpy as np
 import scipy
-from datasets.hparams import hparams
+import sys
+sys.path.append('..')
+from hparams import hparams
 
 
 def load_wav(path):
