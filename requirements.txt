@@ -1,7 +1,1 @@
-docopt
-phonemizer
-numpy==1.16.4
-nnmnkwii
-tqdm
-librosa==0.8.1
-inflect
+
