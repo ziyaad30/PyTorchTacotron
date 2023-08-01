@@ -3,6 +3,8 @@ from functools import partial
 import numpy as np
 import os
 from datasets import audio
+import sys
+sys.path.append('..')
 
 
 def build_from_path(in_dir, out_dir, num_workers=1, tqdm=lambda x: x):
