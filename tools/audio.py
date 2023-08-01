@@ -4,7 +4,6 @@ import math
 import numpy as np
 import scipy
 import sys
-sys.path.append('..')
 from hparams import hparams
 
 
