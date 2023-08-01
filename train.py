@@ -3,7 +3,7 @@
 usage: train.py [options]
 
 options:
-    --data-root=<dir>         Directory contains preprocessed features.
+    --checkpoint=<name>  Restore model from checkpoint path if given.
     -h, --help                Show this help message and exit
 """
 from docopt import docopt
