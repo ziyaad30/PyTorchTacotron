@@ -46,7 +46,7 @@ class hparams:
     eval_interval = 500
     
     # Save
-    checkpoint_dir = 'ckpt'
+    checkpoint_dir = '/content/drive/MyDrive/Speech/ckpt'
     checkpoint_interval = 5000
 
     # Eval:
