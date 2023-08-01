@@ -91,7 +91,7 @@ class TextDataSource(FileDataSource):
         return lines
 
     def collect_features(self, text):
-        return np.asarray(phoneme_to_sequence(text, self._cleaner_names),
+        return np.asarray(phoneme_to_sequence(text),
                           dtype=np.int32)
 
 
