@@ -4,7 +4,6 @@ usage: train.py [options]
 
 options:
     --data-root=<dir>         Directory contains preprocessed features.
-    --checkpoint=<name>  Restore model from checkpoint path if given.
     -h, --help                Show this help message and exit
 """
 from docopt import docopt
@@ -40,7 +39,7 @@ from util.logger import Tacotron2Logger
 from synthesis import tts
 
 # Default DATA_ROOT
-DATA_ROOT = join("Speech", "training")
+DATA_ROOT = join(hparams.dataset_root, "training")
 
 fs = hparams.sample_rate
 
@@ -269,9 +268,6 @@ if __name__ == "__main__":
     args = docopt(__doc__)
     print("Command line args:\n", args)
     checkpoint_path = args["--checkpoint"]
-    data_root = args["--data-root"]
-    if data_root:
-        DATA_ROOT = data_root
 
     os.makedirs(hparams.checkpoint_dir, exist_ok=True)
 
