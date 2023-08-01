@@ -140,7 +140,7 @@ def collate_fn(batch):
         max_target_len += r - max_target_len % r
         assert max_target_len % r == 0
 
-    a = np.array([_pad(x[0], max_input_len) for x in batch], dtype=np.int)
+    a = np.array([_pad(x[0], max_input_len) for x in batch], dtype=np.int32)
     x_batch = torch.LongTensor(a)
 
     input_lengths = torch.LongTensor(input_lengths)
