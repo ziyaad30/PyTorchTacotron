@@ -1,17 +1,3 @@
-""" from https://github.com/keithito/tacotron """
-
-'''
-Cleaners are transformations that run over the input text at both training and eval time.
-
-Cleaners can be selected by passing a comma-delimited list of cleaner names as the "cleaners"
-hyperparameter. Some cleaners are English-specific. You'll typically want to use:
-  1. "english_cleaners" for English text
-  2. "transliteration_cleaners" for non-English text that can be transliterated to ASCII using
-     the Unidecode library (https://pypi.python.org/pypi/Unidecode)
-  3. "basic_cleaners" if you do not want to transliterate (in this case, you should also update
-     the symbols in symbols.py to match your data).
-'''
-
 import re
 from unidecode import unidecode
 from .numbers import normalize_numbers
@@ -40,39 +26,16 @@ _abbreviations = [(re.compile('\\b%s\\.' % x[0], re.IGNORECASE), x[1]) for x in 
     ('ltd', 'limited'),
     ('col', 'colonel'),
     ('ft', 'fort'),
+    ('inc', 'incorporated'),
 ]]
 
 
-def replace_symbols(text, lang="en"):
-    """Replace symbols based on the lenguage tag.
-
-    Args:
-      text:
-       Input text.
-      lang:
-        Lenguage identifier. ex: "en", "fr", "pt", "ca".
-
-    Returns:
-      The modified text
-      example:
-        input args:
-            text: "si l'avi cau, diguem-ho"
-            lang: "ca"
-        Output:
-            text: "si lavi cau, diguemho"
-    """
+def replace_symbols(text):
+    # text = text.replace('"', '')
     text = text.replace(";", ",")
-    text = text.replace("-", " ") if lang != "ca" else text.replace("-", "")
+    text = text.replace("-", " ")
     text = text.replace(":", ",")
-    if lang == "en":
-        text = text.replace("&", " and ")
-    elif lang == "fr":
-        text = text.replace("&", " et ")
-    elif lang == "pt":
-        text = text.replace("&", " e ")
-    elif lang == "ca":
-        text = text.replace("&", " i ")
-        text = text.replace("'", "")
+    text = text.replace("&", " and ")
     return text
 
 
@@ -121,6 +84,7 @@ def english_cleaners(text):
     '''Pipeline for English text, including number and abbreviation expansion.'''
     text = convert_to_ascii(text)
     text = lowercase(text)
+    text = replace_symbols(text)
     text = expand_numbers(text)
     text = expand_abbreviations(text)
     text = collapse_whitespace(text)
@@ -129,6 +93,7 @@ def english_cleaners(text):
 
 def phoneme_cleaners(text):
     """Pipeline for phonemes mode, including number and abbreviation expansion."""
+    text = lowercase(text)
     text = expand_numbers(text)
     text = expand_abbreviations(text)
     text = replace_symbols(text)
