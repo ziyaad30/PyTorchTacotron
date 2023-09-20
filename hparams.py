@@ -5,14 +5,13 @@ class hparams:
     #Dataset Root Directory
     dataset_root = 'Speech'
     
-    # text, you may want to use "basic_cleaners" or "transliteration_cleaners" See TRAINING_DATA.md.
+    # text, you may want to use "english_cleaners" or "phoneme_cleaners"
     cleaners='phoneme_cleaners'
-    use_cmudict=False  # Use CMUDict during training to learn pronunciation of ARPAbet phonemes
 
     # Audio:
     num_mels = 80
     num_freq = 1025
-    sample_rate = 20000
+    sample_rate = 22050
     frame_length_ms = 50
     frame_shift_ms = 12.5
     preemphasis = 0.97
@@ -27,10 +26,10 @@ class hparams:
 
     # Data loader
     pin_memory = True
-    num_workers = 2
+    num_workers = 0
 
     # Training:
-    batch_size = 32
+    batch_size = 16
     adam_beta1 = 0.9
     adam_beta2 = 0.999
     initial_learning_rate = 0.002
@@ -40,14 +39,14 @@ class hparams:
     clip_thresh = 1.0
     
     # Logging
-    log_interval = 1000
+    log_interval = 100
     
     # Evaluate
     eval_interval = 500
     
     # Save
     checkpoint_dir = 'ckpt'
-    checkpoint_interval = 5000
+    checkpoint_interval = 200
 
     # Eval:
     max_iters = 10
